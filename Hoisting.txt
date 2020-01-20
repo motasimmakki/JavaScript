@@ -1,0 +1,78 @@
+//PUSH()
+var ar=['1',2,4,4.5];
+ar.push("Prolog");
+console.log(ar);
+
+//POP
+var ar=['1',2,4,4.5];
+console.log(ar.pop());
+
+//SHIFT()
+var ar=['1',2,4,4.5];
+console.log(ar.shift());
+
+//UNSHIFT
+var ar=['1',2,4,4.5];
+ar.unshift("Prolog");
+console.log(ar);
+
+
+//   Hoisting and Closure
+
+function tikcetCounter(shift) {
+	var ticket=0;
+	var customerName=[];
+	var fun=function(name){
+		customerName.push(name);
+		ticket++;
+		console.log('Dear '+name+' , You are customer number : '+ticket+' for the '+shift+' show');		
+	}
+
+	var printNames=function(){
+		console.log(shift+" : "+customerName);
+	}
+
+	var arr=[fun,printNames];
+
+	return arr;
+}
+
+var day=tikcetCounter("day");
+day[0]("Vivek");
+day[0]("Aneeque");
+
+var night=tikcetCounter("night");
+night[0]("Salman");
+night[0]("Musab");
+
+
+var evening=tikcetCounter("evening");
+evening[0]("Tashhir");
+evening[0]("Motasim");
+evening[0]("Atif");
+
+
+day[1]();
+night[1]();
+evening[1]();
+
+//Homework
+var customerName=["Vivek","Motasim","Salman","Musab"];
+function findMe(name){
+	var innerFunction;
+	for(var i=0;i<customerName.length;i++){
+		if(name==customerName[i]){
+			innerFunction=function(){
+				console.log("You are customer Number "+i);
+			}
+		}
+	}
+	return innerFunction;
+}
+
+var print=findMe("Motasim");
+print();
+Expected Output: You are customer Number 1
+Actual Output: You are customer Number 4
+
+
