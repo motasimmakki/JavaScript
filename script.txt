@@ -1,89 +1,78 @@
-//Variable
-var x=10
-alert(x)
+//PUSH()
+var ar=['1',2,4,4.5];
+ar.push("Prolog");
+console.log(ar);
 
-//Function
+//POP
+var ar=['1',2,4,4.5];
+console.log(ar.pop());
 
-function fun()
-{
-	alert("Hello Welcome to PRolog");
+//SHIFT()
+var ar=['1',2,4,4.5];
+console.log(ar.shift());
+
+//UNSHIFT
+var ar=['1',2,4,4.5];
+ar.unshift("Prolog");
+console.log(ar);
+
+
+//   Hoisting and Closure
+
+function tikcetCounter(shift) {
+	var ticket=0;
+	var customerName=[];
+	var fun=function(name){
+		customerName.push(name);
+		ticket++;
+		console.log('Dear '+name+' , You are customer number : '+ticket+' for the '+shift+' show');		
+	}
+
+	var printNames=function(){
+		console.log(shift+" : "+customerName);
+	}
+
+	var arr=[fun,printNames];
+
+	return arr;
 }
 
-fun();
+var day=tikcetCounter("day");
+day[0]("Vivek");
+day[0]("Aneeque");
 
-//Array
-var ar=[1,'c',"Prolog",4.5];
-
-alert(ar[0]);
-alert(ar[1]);
-alert(ar[2]);
-alert(ar[3]);
-
-alert(ar);
+var night=tikcetCounter("night");
+night[0]("Salman");
+night[0]("Musab");
 
 
-//Variable and Function
-//Function Expression
-var x=function(){
-	alert('I am inside a variable');
+var evening=tikcetCounter("evening");
+evening[0]("Tashhir");
+evening[0]("Motasim");
+evening[0]("Atif");
+
+
+day[1]();
+night[1]();
+evening[1]();
+
+//Homework
+var customerName=["Vivek","Motasim","Salman","Musab"];
+function findMe(name){
+	var innerFunction;
+	for(var i=0;i<customerName.length;i++){
+		if(name==customerName[i]){
+			innerFunction=function(){
+				console.log("You are customer Number "+i);
+			}
+		}
+	}
+	return innerFunction;
 }
-x();
-alert(x);
 
-
-//Function Definition
-function fun(){
-	alert('Function');
-}
-alert(fun);
-fun();
-
-
-//Anonymous Function
-(function(){
-	alert('Anonymous');
-})();
-
-
-//Function Arguments(No need to match the argumnets)
-function print(x)
-{
-	alert(x);
-}
+var print=findMe("Motasim");
 print();
-print(10,20,30,40);
-print(20);
-
-
-var x=20;
-var x=10;
-alert(x);	//10
-
-
-function fun(){
-	alert('Prolog');
-}
-
-function fun(){
-	alert('Academy');
-}
-fun();		//Academy
-
-
-var fun1=function(){
-	alert('Hello')
-};
-
-var fun2=function(){
-	alert('byee')
-};
-
-var ar=[fun1,fun2];
-
-ar[0]();
-ar[1]();
-
-
-
+Expected Output: You are customer Number 1
+Actual Output: You are customer Number 4
 
 
