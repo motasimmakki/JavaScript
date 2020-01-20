@@ -1,0 +1,48 @@
+1).
+function fun(x) {
+	alert(x);
+}
+
+fun(10);
+
+2).
+function fun(x) {
+	var innerfun=function () {
+		alert(x);
+	}
+	return innerfun;
+}
+
+fun(10)();
+
+3).
+function fun(x) {
+	var innerfun=function () {
+		var innertoinnerfun=function (y) {
+			alert(x+y);
+		}
+		return innertoinnerfun;
+	}
+	return innerfun;
+}
+
+fun(10)()(20);
+
+4).
+function fun(x) {
+	var innerfun1=function () {
+		var innerfun2=function (y) {
+			var innerfun3=function () {
+				var innerfun4=function (z) {
+					alert(x+y+z);
+				}
+				return innerfun4;
+			}
+			return innerfun3;
+		}
+		return innerfun2;
+	}
+	return innerfun1;
+}
+
+fun(10)()(20)()(30);
