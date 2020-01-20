@@ -1,104 +1,78 @@
-//Methods of Array
+//PUSH()
+var ar=['1',2,4,4.5];
+ar.push("Prolog");
+console.log(ar);
 
+//POP
+var ar=['1',2,4,4.5];
+console.log(ar.pop());
 
-//2. reduce()
-var ar=[1,2,3,4,5];
-var x=ar.reduce(function(acc,x){ return acc+x },1)
-console.log(x);
+//SHIFT()
+var ar=['1',2,4,4.5];
+console.log(ar.shift());
 
-
-function reduce(ar,callback,initial)
-{
-	var newString=ar[0];
-	if(initial!=undefined){
-		newString=callback(initial,ar[0]);
-	}
-	for(i=1;i<ar.length;i++){
-		//newString = newString + ar[i].charAt(0);
-		newString = callback(newString,ar[i]);
-	}
-	return newString;
-}
-
-function fun(acc,val){
-	return acc+val.charAt(0);
-}
-
-var arr=["Atif","Motasim","Aneeque","Musab"];
-var val=reduce(arr,fun);
-console.log(val);
-
-
-
-
-
-reduce
-
-var answer=ar.reduce(function(acc,x){ return acc*x });
-
-console.log(answer);
-
-2. Filter
-
-var ar=["Atif","Motasim","Aneeque","Musab"];
-var newArr=	ar.filter(function(x){
-					return x.length <= 5;	
-				});
-
-console.log(newArr);
-
-
-function  filter(arr,callback){
-	var newArr=[];
-	for(var i=0;i<arr.length;i++){
-		if(callback(arr[i])){
-			newArr.push(arr[i]);
-		}
-	}
-	return newArr;
-}
-
-function fun(x){
-	return x%2!=0;
-}
-
-//4. Some
-var ar=[1,3,50,7,9];
-
-ar.some(function(x){ return x%2==0 });
-
-//5. Every
-var ar=[1,3,50,7,9];
-
-ar.every(function(x){ return x%2==1 });
-
-
-//7. Sort 
-
-var ar=[2,24,3,41,15];
-
-ar.sort(function(a,b){
-	return b-a;
-});
-
+//UNSHIFT
+var ar=['1',2,4,4.5];
+ar.unshift("Prolog");
 console.log(ar);
 
 
+//   Hoisting and Closure
 
-function getDegree( scholar , callback ){
-	var newArray=[];
-	for( var i=0; i < scholar.length; i++ ){
-		newArray[i]=callback( scholar[i] );	
-	}	
-	return newArray;
+function tikcetCounter(shift) {
+	var ticket=0;
+	var customerName=[];
+	var fun=function(name){
+		customerName.push(name);
+		ticket++;
+		console.log('Dear '+name+' , You are customer number : '+ticket+' for the '+shift+' show');		
+	}
+
+	var printNames=function(){
+		console.log(shift+" : "+customerName);
+	}
+
+	var arr=[fun,printNames];
+
+	return arr;
 }
 
-var doctors = getDegree( ['Amil','Arif','Anas'] ,
-	 		function( x ) { return 'Dr.'+x } 
-	 );
-var engineers = getDegree( ['Amil','Arif','Anas'] ,
-	 function( x ){ return 'Er.'+x } 
-);
+var day=tikcetCounter("day");
+day[0]("Vivek");
+day[0]("Aneeque");
 
-console.log( doctors );
-console.log( engineers );
+var night=tikcetCounter("night");
+night[0]("Salman");
+night[0]("Musab");
+
+
+var evening=tikcetCounter("evening");
+evening[0]("Tashhir");
+evening[0]("Motasim");
+evening[0]("Atif");
+
+
+day[1]();
+night[1]();
+evening[1]();
+
+//Homework
+var customerName=["Vivek","Motasim","Salman","Musab"];
+function findMe(name){
+	var innerFunction;
+	for(var i=0;i<customerName.length;i++){
+		if(name==customerName[i]){
+			innerFunction=function(){
+				console.log("You are customer Number "+i);
+			}
+		}
+	}
+	return innerFunction;
+}
+
+var print=findMe("Motasim");
+print();
+Expected Output: You are customer Number 1
+Actual Output: You are customer Number 4
+
+
